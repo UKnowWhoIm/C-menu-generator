@@ -1,3 +1,4 @@
+#include <fstream>
 #include<iostream>
 #include<string>
 #include<vector>
@@ -41,12 +42,17 @@ string generateLoopBody(vector<string> data,int beginNum=0){
 
 int main(){
     vector<string> data;
+    cout<<"Enter name of functions(-1 to indicate end): ";
     string temp;
-    do{
+    while(1){
         cin>>temp;
-        if(temp != "-1")
-            data.push_back(temp);
-    }while(temp != "-1");
+        if(temp == "-1")
+            break;
+        data.push_back(temp);
+    }
+    ofstream outfile;
+    outfile.open("menu.c");
+    outfile<<generateLoopBody(data);
     cout<<generateLoopBody(data);
 
     return 0;
